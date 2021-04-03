@@ -1,0 +1,25 @@
+from netmiko import ConnectHandler
+import getpass
+#Defining a netmiko_class
+#variable_name = dictionary / class
+
+mylist =["192.168.220.137","192.168.220.138","192.168.220.139]
+
+for item in mylist:
+    mydevice={
+        "device_type" : "cisco_ios",
+        "ip": item,
+        "username" : input("enter the username:"),   #admin
+        "password" : getpass.getpass()               #cisco123
+    }
+
+    net_connect123 = ConnectHandler(**mydevice)   #initializing ssh console connection
+
+    output123= net_connect123.send_command("show arp")
+    print (output123)
+
+#"password" : input("enter the password:")    #cisco123
+
+#import getpass
+#"password" : getpass.getpass()
+#run--->edit configuration-->enable ticking..Emulate terminal in Console
