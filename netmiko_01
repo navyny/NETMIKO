@@ -19,6 +19,9 @@ net_connect123 = ConnectHandler(**mydevice)   #initializing ssh console connecti
 output123= net_connect123.send_command("show arp")
 print (output123)
 
+net_connect123.disconnect()
+
+
 #"password" : input("enter the password:")    #cisco123
 
 #WHEN USING GETPASS
