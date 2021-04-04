@@ -19,18 +19,20 @@ net_connect123 = ConnectHandler(**mydevice)   #initializing ssh console connecti
 output123= net_connect123.send_command("show arp")
 print (output123)
 
-net_connect123.disconnect()
+net_connect123.disconnect()      #REcommended to have it outside the for loop
 
 
 #"password" : input("enter the password:")    #cisco123
 
 #WHEN USING GETPASS
+-------------------
 #import getpass
 #"password" : getpass.getpass()
 #run--->edit configuration-->enable ticking..Emulate terminal in Console
 
 
 #WHEN USING A SECRET PASSWORD:
+----------------------------
 
 mydevice={
     "device_type" : "cisco_ios",
