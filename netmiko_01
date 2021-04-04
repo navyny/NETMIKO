@@ -25,3 +25,17 @@ print (output123)
 #import getpass
 #"password" : getpass.getpass()
 #run--->edit configuration-->enable ticking..Emulate terminal in Console
+
+
+#WHEN USING A SECRET PASSWORD:
+
+mydevice={
+    "device_type" : "cisco_ios",
+    "ip":"192.168.220.137",
+    "username" : input("enter the username:"),   #admin
+    "password" : getpass.getpass()               #cisco123
+    "secret" : "cisco123"     #---------->Add this if there is enable passoword
+}
+
+net_connect123 = ConnectHandler(**mydevice)
+net_connect123.enable()
