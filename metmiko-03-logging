@@ -1,0 +1,3 @@
+import logging
+logging.basicConfig(filename='network_script.log',level=logging.DEBUG)
+logger=logging.fetLogger("Netmiko")
