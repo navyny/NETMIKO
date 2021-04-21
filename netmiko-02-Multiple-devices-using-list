@@ -1,24 +1,30 @@
 from netmiko import ConnectHandler
 import getpass
-#Defining a netmiko_class
-#variable_name = dictionary / class
 
-mylist =["192.168.220.137","192.168.220.138","192.168.220.139]
+devices_list = ["192.168.220.138","192.168.220.139"]
 
-for item in mylist:
-    mydevice={
-        "device_type" : "cisco_ios",
-        "ip": item,
-        "username" : input("enter the username:"),   #admin
-        "password" : getpass.getpass()               #cisco123
+admin = input ("Enter username: ")
+password = input("Enter password: ")
+enable = input("Enter enable password: ")    # this needs "enable secret cisco12345" on switch
+
+for each_ip in devices_list:
+    ciscodevice = {
+        "device_type": "cisco_ios",
+        "ip":each_ip,
+        "username": admin,
+        "password": password,
+        "secret" : enable
     }
 
-    net_connect123 = ConnectHandler(**mydevice)   #initializing ssh console connection
 
-    output123= net_connect123.send_command("show arp")
-    print (output123)
+    ssh_connection = ConnectHandler(**ciscodevice)
 
-#"password" : input("enter the password:")    #cisco123
+    print ("connecting to: " + each_ip + "*************")
+    my_result = ssh_connection.send_command("sh ip int br | inc up")
+    print (my_result)
+    print("disconnecting from: " + each_ip + "*************")
+    print("--**--" * 20 )
+    ssh_connection.disconnect()
 
 #import getpass
 #"password" : getpass.getpass()
